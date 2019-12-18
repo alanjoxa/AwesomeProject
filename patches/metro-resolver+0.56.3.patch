@@ -1,0 +1,18 @@
+diff --git a/node_modules/metro-resolver/src/resolve.js b/node_modules/metro-resolver/src/resolve.js
+index 0aef96f..c1cada8 100644
+--- a/node_modules/metro-resolver/src/resolve.js
++++ b/node_modules/metro-resolver/src/resolve.js
+@@ -100,7 +100,12 @@ function resolve(context, moduleName, platform) {
+ 
+   if (resolveRequest) {
+     try {
+-      const resolution = resolveRequest(context, realModuleName, platform);
++      const resolution = resolveRequest(
++        context,
++        realModuleName,
++        platform,
++        moduleName,
++      );
+ 
+       if (resolution) {
+         return resolution;
