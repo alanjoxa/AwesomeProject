@@ -11,9 +11,10 @@
     "postinstall": "patch-package"
   },
   "dependencies": {
+    "ci-info": "^2.0.0",
     "patch-sibling-package": "^6.1.5",
     "react": "16.9.0",
-    "react-native": "git://github.com/facebook/react-native.git"
+    "react-native": "0.61.5"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",

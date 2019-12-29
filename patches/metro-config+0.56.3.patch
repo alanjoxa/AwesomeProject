@@ -1,24 +1,32 @@
 diff --git a/node_modules/metro-config/src/convertConfig.js b/node_modules/metro-config/src/convertConfig.js
-index e5fa790..247b099 100644
+index e5fa790..396e2c6 100644
 --- a/node_modules/metro-config/src/convertConfig.js
 +++ b/node_modules/metro-config/src/convertConfig.js
 @@ -179,6 +179,7 @@ function _convertOldToNew() {
        watchFolders,
        transformerPath: defaultConfig.transformerPath,
        resetCache,
-+      watch,
++      watch: defaultConfig.watch,
        maxWorkers,
        visualizer: {
          presets: []
 diff --git a/node_modules/metro-config/src/defaults/index.js b/node_modules/metro-config/src/defaults/index.js
-index d7bc0e8..3c33bbc 100644
+index d7bc0e8..c528113 100644
 --- a/node_modules/metro-config/src/defaults/index.js
 +++ b/node_modules/metro-config/src/defaults/index.js
-@@ -173,6 +173,7 @@ const getDefaultValues = projectRoot => ({
+@@ -50,6 +50,7 @@ const getMaxWorkers = require("metro/src/lib/getMaxWorkers");
+ const os = require("os");
+ 
+ const path = require("path");
++const ci = require('ci-info');
+ 
+ const _require = require("./defaults"),
+   assetExts = _require.assetExts,
+@@ -173,6 +174,7 @@ const getDefaultValues = projectRoot => ({
    projectRoot: projectRoot || path.resolve(__dirname, "../../.."),
    stickyWorkers: true,
    watchFolders: [],
-+  watch: true,
++  watch: !ci.isCI,
    transformerPath: require.resolve("metro/src/JSTransformer/worker.js"),
    maxWorkers: getMaxWorkers(),
    resetCache: false,
