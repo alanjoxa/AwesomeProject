@@ -6,7 +6,6 @@
  */
 
 module.exports = {
-watch : false,  
 transformer: {
     getTransformOptions: async () => ({
       transform: {

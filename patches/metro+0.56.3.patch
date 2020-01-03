@@ -1,22 +1,30 @@
 diff --git a/node_modules/metro/src/node-haste/DependencyGraph.js b/node_modules/metro/src/node-haste/DependencyGraph.js
-index cdd1b81..5e3f320 100644
+index cdd1b81..d7376f0 100644
 --- a/node_modules/metro/src/node-haste/DependencyGraph.js
 +++ b/node_modules/metro/src/node-haste/DependencyGraph.js
-@@ -117,7 +117,7 @@ class DependencyGraph extends EventEmitter {
-     this._createModuleResolver();
+@@ -66,7 +66,7 @@ const Module = require("./Module");
+ const ModuleCache = require("./ModuleCache");
+ 
+ const ResolutionRequest = require("./DependencyGraph/ResolutionRequest");
+-
++const ci = require('ci-info');
+ const fs = require("fs");
+ 
+ const path = require("path");
+@@ -118,6 +118,7 @@ class DependencyGraph extends EventEmitter {
    }
  
--  static _createHaste(config) {
-+  static _createHaste(config) { console.log("#### Value of config.watch for JestHasteMap is ", config.watch);
+   static _createHaste(config) {
++    console.log("Running in CI environment : ", ci.isCI);
      return new JestHasteMap({
        cacheDirectory: config.hasteMapCacheDirectory,
        computeDependencies: false,
-@@ -137,7 +137,7 @@ class DependencyGraph extends EventEmitter {
+@@ -137,7 +138,7 @@ class DependencyGraph extends EventEmitter {
        roots: config.watchFolders,
        throwOnModuleCollision: true,
        useWatchman: config.resolver.useWatchman,
 -      watch: true
-+      watch: config.watch
++      watch: !ci.isCI
      });
    }
  
